@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>A Primer in Machine Learning Regressors: Predicting the Number of Hits of ImmobilienScout24 Listings</title>
+
+  <meta property="description" itemprop="description" content="In this article, we are presenting a combination of distinct machine learning models to predict the number of hits on housing advertisements on the housing platform Immobilienscout24. The predictions are based on numerous variables describing key features of the respective apartment."/>
+
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-05-10"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-05-10"/>
+  <meta name="article:author" content="Carlo Greß"/>
+  <meta name="article:author" content="Wojchiech Kuznicki"/>
+  <meta name="article:author" content="Santiago Sordo"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="A Primer in Machine Learning Regressors: Predicting the Number of Hits of ImmobilienScout24 Listings"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="In this article, we are presenting a combination of distinct machine learning models to predict the number of hits on housing advertisements on the housing platform Immobilienscout24. The predictions are based on numerous variables describing key features of the respective apartment."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="A Primer in Machine Learning Regressors: Predicting the Number of Hits of ImmobilienScout24 Listings"/>
+  <meta property="twitter:description" content="In this article, we are presenting a combination of distinct machine learning models to predict the number of hits on housing advertisements on the housing platform Immobilienscout24. The predictions are based on numerous variables describing key features of the respective apartment."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Practical lessons from predicting clicks on ads at facebook;citation_publication_date=2014;citation_author=Xinran He;citation_author=Junfeng Pan;citation_author=Ou Jin;citation_author=Tianbing Xu;citation_author=Bo Liu;citation_author=Tao Xu;citation_author=Yanxin Shi;citation_author=Antoine Atallah;citation_author=Ralf Herbrich;citation_author=Stuart Bowers;citation_author=Practical lessons from predicting clicks on ads at facebook"/>
+  <meta name="citation_reference" content="citation_title=Python machine learning: Machine learning and deep learning with python, scikit-learn, and TensorFlow, 2nd edition;citation_publication_date=2017;citation_publisher=Packt Publishing;citation_author=Sebastian Raschka;citation_author=Vahid Mirjalili"/>
+  <meta name="citation_reference" content="citation_title=Scikit-learn: Machine learning in Python;citation_publication_date=2011;citation_volume=12;citation_author=F. Pedregosa;citation_author=G. Varoquaux;citation_author=A. Gramfort;citation_author=V. Michel;citation_author=B. Thirion;citation_author=O. Grisel;citation_author=M. Blondel;citation_author=P. Prettenhofer;citation_author=R. Weiss;citation_author=V. Dubourg;citation_author=J. Vanderplas;citation_author=A. Passos;citation_author=D. Cournapeau;citation_author=M. Brucher;citation_author=M. Perrot;citation_author=E. Duchesnay"/>
+  <meta name="citation_reference" content="citation_title=Efficient BackProp;citation_publication_date=2012;citation_publisher=Springer Berlin Heidelberg;citation_doi=10.1007/978-3-642-35289-8_3;citation_author=Yann A. LeCun;citation_author=Léon Bottou;citation_author=Genevieve B. Orr;citation_author=Klaus-Robert Müller"/>
+  <meta name="citation_reference" content="citation_title=Efficient BackProp;citation_publication_date=2012;citation_publisher=Springer Berlin Heidelberg;citation_doi=10.1007/978-3-642-35289-8_3;citation_author=Yann A. LeCun;citation_author=Léon Bottou;citation_author=Genevieve B. Orr;citation_author=Klaus-Robert Müller"/>
+  <meta name="citation_reference" content="citation_title=Practical lessons from predicting clicks on ads at facebook;citation_publication_date=2014;citation_author=Xinran He;citation_author=Junfeng Pan;citation_author=Ou Jin;citation_author=Tianbing Xu;citation_author=Bo Liu;citation_author=Tao Xu;citation_author=Yanxin Shi;citation_author=Antoine Atallah;citation_author=Ralf Herbrich;citation_author=Stuart Bowers;citation_author=Practical lessons from predicting clicks on ads at facebook"/>
+  <meta name="citation_reference" content="citation_title=Hands-on machine learning with scikit-learn and TensorFlow : Concepts, tools, and techniques to build intelligent systems;citation_publication_date=2017;citation_publisher=O’Reilly Media;citation_author=Aurélien Géron"/>
+  <meta name="citation_reference" content="citation_title=Python machine learning: Machine learning and deep learning with python, scikit-learn, and TensorFlow, 2nd edition;citation_publication_date=2017;citation_publisher=Packt Publishing;citation_author=Sebastian Raschka;citation_author=Vahid Mirjalili"/>
+  <meta name="citation_reference" content="citation_title=Scikit-learn: Machine learning in Python;citation_publication_date=2011;citation_volume=12;citation_author=F. Pedregosa;citation_author=G. Varoquaux;citation_author=A. Gramfort;citation_author=V. Michel;citation_author=B. Thirion;citation_author=O. Grisel;citation_author=M. Blondel;citation_author=P. Prettenhofer;citation_author=R. Weiss;citation_author=V. Dubourg;citation_author=J. Vanderplas;citation_author=A. Passos;citation_author=D. Cournapeau;citation_author=M. Brucher;citation_author=M. Perrot;citation_author=E. Duchesnay"/>
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","creative_commons","repository_url","output","preview","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["A Primer in Machine Learning Regressors: Predicting the Number of Hits of ImmobilienScout24 Listings"]},{"type":"character","attributes":{},"value":["In this article, we are presenting a combination of distinct machine learning models to predict the number of hits on housing advertisements on the housing platform Immobilienscout24. The predictions are based on numerous variables describing key features of the respective apartment. \n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Carlo Greß"]},{"type":"character","attributes":{},"value":["https://github.com/carlo-gress/immo"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Wojchiech Kuznicki"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Santiago Sordo"]}]}]},{"type":"character","attributes":{},"value":["2022-05-10"]},{"type":"character","attributes":{},"value":["Regression Task using distinct models"]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["https://github.com/carlo-gress/immo"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["figures/BERTfig3.png"]},{"type":"character","attributes":{},"value":["bibliography.bib"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["bibliography.bib","distill-template.html","distill-template_files/anchor-4.2.2/anchor.min.js","distill-template_files/bowser-1.9.3/bowser.min.js","distill-template_files/distill-2.2.21/template.v2.js","distill-template_files/header-attrs-2.11/header-attrs - Kopie.js","distill-template_files/header-attrs-2.11/header-attrs.js","distill-template_files/jquery-3.6.0/jquery-3.6.0 - Kopie.js","distill-template_files/jquery-3.6.0/jquery-3.6.0.js","distill-template_files/jquery-3.6.0/jquery-3.6.0.min - Kopie.js","distill-template_files/jquery-3.6.0/jquery-3.6.0.min - Kopie.map","distill-template_files/jquery-3.6.0/jquery-3.6.0.min.js","distill-template_files/jquery-3.6.0/jquery-3.6.0.min.map","distill-template_files/popper-2.6.0/popper.min.js","distill-template_files/tippy-6.2.7/tippy-bundle.umd.min.js","distill-template_files/tippy-6.2.7/tippy-light-border.css","distill-template_files/tippy-6.2.7/tippy.css","distill-template_files/tippy-6.2.7/tippy.umd.min.js","distill-template_files/webcomponents-2.0.0/webcomponents.js","figures/BERTCNNMinor_acc_loss.png","figures/BERTfig3.png","figures/chart.png","figures/CNNMajor_acc_loss.png","figures/desc-country.png","figures/desc-major.png","figures/figure2.png","figures/figure3.png","figures/figure4.png","figures/prf1-major.png","figures/table1.png","figures/table2.png","figures/table3.png","figures/temp.png","figures/tt.png","ml_blogpost_files/anchor-4.2.2/anchor.min.js","ml_blogpost_files/bowser-1.9.3/bowser.min.js","ml_blogpost_files/distill-2.2.21/template.v2.js","ml_blogpost_files/header-attrs-2.11/header-attrs - Kopie.js","ml_blogpost_files/header-attrs-2.11/header-attrs.js","ml_blogpost_files/jquery-3.6.0/jquery-3.6.0 - Kopie.js","ml_blogpost_files/jquery-3.6.0/jquery-3.6.0.js","ml_blogpost_files/jquery-3.6.0/jquery-3.6.0.min - Kopie.js","ml_blogpost_files/jquery-3.6.0/jquery-3.6.0.min - Kopie.map","ml_blogpost_files/jquery-3.6.0/jquery-3.6.0.min.js","ml_blogpost_files/jquery-3.6.0/jquery-3.6.0.min.map","ml_blogpost_files/popper-2.6.0/popper.min.js","ml_blogpost_files/table1.png","ml_blogpost_files/tippy-6.2.7/tippy-bundle.umd.min.js","ml_blogpost_files/tippy-6.2.7/tippy-light-border.css","ml_blogpost_files/tippy-6.2.7/tippy.css","ml_blogpost_files/tippy-6.2.7/tippy.umd.min.js","ml_blogpost_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="ml_blogpost_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="ml_blogpost_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="ml_blogpost_files/popper-2.6.0/popper.min.js"></script>
+  <link href="ml_blogpost_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="ml_blogpost_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="ml_blogpost_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="ml_blogpost_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="ml_blogpost_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="ml_blogpost_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="ml_blogpost_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"A Primer in Machine Learning Regressors: Predicting the Number of Hits of ImmobilienScout24 Listings","description":"In this article, we are presenting a combination of distinct machine learning models to predict the number of hits on housing advertisements on the housing platform Immobilienscout24. The predictions are based on numerous variables describing key features of the respective apartment.","authors":[{"author":"Carlo Greß","authorURL":"https://github.com/carlo-gress/immo","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Wojchiech Kuznicki","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Santiago Sordo","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-05-10T00:00:00.000+02:00","citationText":"Greß, et al., 2022"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>A Primer in Machine Learning Regressors: Predicting the Number of Hits of ImmobilienScout24 Listings</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">Regression Task using distinct models</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>In this article, we are presenting a combination of distinct machine learning models to predict the number of hits on housing advertisements on the housing platform Immobilienscout24. The predictions are based on numerous variables describing key features of the respective apartment.</p></p>
+</div>
+
+<div class="d-byline">
+  Carlo Greß <a href="https://github.com/carlo-gress/immo" class="uri">https://github.com/carlo-gress/immo</a> 
+  
+,   Wojchiech Kuznicki  
+  
+,   Santiago Sordo  
+  
+<br/>2022-05-10
+</div>
+
+<div class="d-article">
+<h2 id="abstract">Abstract</h2>
+<p>This blogpost focuses on the prediction of hits on apartment listings on the online platform Immobilienscout24. For this purpose, we are using an extensive dataset covering cross-sectional information on over 400,000 apartment advertisements in Germany, generated by the Forschungsdatenzentrum Ruhr. Since the dataset contains both information on the respective apartments as well as the meta-information of user clicks on the advertisements, we are enabled to use apartment characteristics to predict the number of clicks on advertisements. For the predictions, we are using several distinct machine learning algorithms: (linear) regression models as a first baseline as well as more advanced tree models, support vector machine, multilayer perceptron, and ensemble learning. The main goal of this project was two-fold: On the one hand, specifying several models with increasing complexity were expected to increase the overall click prediction accuracy. On the other hand, this project served as getting first hands-on experience with different machine learning models. As a main result, we find that while the more advanced models effectively increase the prediction accuracy, the runtime of these models is significantly higher.</p>
+<h2 id="introduction-background">Introduction / Background</h2>
+<p>Predicting the number of clicks on advertisements on the internet is a common task in recent machine learning applications: Exemplarily, previous work has focused on predicting what determines advertisement’s success on Facebook <span class="citation" data-cites="he2014practical">(<a href="#ref-he2014practical" role="doc-biblioref">He et al. 2014</a>)</span> or the Microsoft search engine <span class="citation" data-cites="richardson2007predicting">(<a href="#ref-richardson2007predicting" role="doc-biblioref">Richardson, Dominowska, and Ragno 2007</a>)</span>. In this project, we are applying similar frameworks to the domain of housing listings on the German housing portal Immobilienscout24, using several characteristics of the respective ads for predicting how often user have clicked on it</p>
+<p>The introduction explains the problem, why it’s difficult, interesting, or important, how and why current methods succeed/fail at the problem, and explains the key ideas of your approach and results. Though an introduction covers similar material as an abstract, the introduction gives more space for motivation, detail, references to existing work, and to capture the reader’s interest.</p>
+<h2 id="related-work">Related Work</h2>
+<p>As already introduced, predicting clicks on advertisements or related webpages is not an inherently new task and has been applied in machine learning frameworks in the past. He and co-authors explored what user characteristics determine the clicks of advertisements on Facebook<span class="citation" data-cites="he2014practical">(<a href="#ref-he2014practical" role="doc-biblioref">He et al. 2014</a>)</span>. Fur this purpose, they do not measure the absolute number of clicks as in our application, but rather the click through rate (CTR) of the advertisements. The CTR displays a value that is calculated by dividing the “successful” clicks by the total number of views of the advertisements. Concretely, a click-through rate of 10 per cent would indicate that 10 per cent of user who see an advertisement actually end up clicking on it. Subsequently, the click-through rate can be interpreted as a measure of success for online advertisements.</p>
+<p>In the context of Facebook advertisements, the authors find that a combination of a logistic regression model combined with a decision tree model works best for the predictions, outperforming the models applied on their own. Although the dependent variable slightly differs from the specification of our dependent variable, this study still provides the important implication that combining distinct models might improve the quality of our predictions.</p>
+<p>The prediction of clicks has also been applied in further research regarding the success of advertisements on the Microsoft search engine <span class="citation" data-cites="richardson2007predicting">(<a href="#ref-richardson2007predicting" role="doc-biblioref">Richardson, Dominowska, and Ragno 2007</a>)</span>. Again, the authors predict the CTR for new advertisements, additionally considering the position of the respective advertisement. This conditioning on the position of the advertisement on the search output is due to the reasonable assumption that advertisements that are positioned comparatively high (among the first search results) are significantly more often viewed. Again, the authors are facing a regression task, and are using logistic regression for predicting the CTR.</p>
+<p>All papers discussed here use some kind of logistic regression models, which is well-reasoned since the CTR usually is a value between 0 and 1 and can be interpreted as a probability. Since we are rather dealing with count data as output variable, we need to slightly adapt our (baseline) regression models for taking the special characteristics of count data into consideration. However, regarding the general model specification, the previous literature discussed here implies that it might be a reasonable approach to specify a comparatively simple (linear) regression model as a first baseline model and use a combination of that baseline model with more sophisticated frameworks for improving the performance. Therefore, the previous literature has provided some useful connections to our work. In the next section, we discuss the models that were used for predicting the number of clicks on Immobilienscout24 listings.</p>
+<h2 id="data">Data</h2>
+<p><strong>Dataset</strong>: To achieve our objectives, and given the fact that several sources are available, we decided to analyze online ads for the German real estate market. Our search for a relevant data set led us to the RWI-GEO-RED dataset, which has been curated by the FDZ Ruhr am RWI and is documented in Breidenbach and Schaffner (2020)<span class="citation" data-cites="breidenbach2020real">(<a href="#ref-breidenbach2020real" role="doc-biblioref">Breidenbach and Schaffner 2020</a>)</span>. The dataset contains a host of variables describing residential real estate listings from ImmobilienScout24, considered the largest online platform for real estate offers in Germany. These variables describe not only the property being listed but also include metadata that describe the ad itself. the ad itself (e.g. days of availability, number of hits, etc.). The complete dataset includes variables that are sensitive from a privacy point of view and are not available to the general public. Moreover, most of its variables have a sample size of over 19 million. For these reasons, the FDZ Ruhr at RWI has curated a smaller dataset that does not contain sensitive information and can thus be used for teaching purposes, which they call the campus dataset. This is the dataset to which we requested access.</p>
+<p>The campus dataset includes cross-sectional and panel data for four types of advertisements: houses for sale, houses for rent, flats for sale, and flats for rent. We decided to use the cross-sectional data, as it is better suited for our objectives and chose to work with flats for rent, as we believe it is the most dynamic and interesting type of property. The file contains more than 400 thousand observations of 57 variables. However, not all were properly suited for the task at hand and we conducted a dataset curation process.</p>
+<p><strong>The curation process</strong> The first step in our pipeline was, as expected, to curate our own version of the “raw” RWI-GEO-RED dataset. Many variables had specific codes for different kinds of missing values and error codes. In total, the raw data contained seven different codes for missing values, as specified in Schaffner (2020). In order to homogenize the dataset, we first had to make sure all these values were recoded into <em>NaN</em>. In order to recode, as was the case with several tasks in our pipeline with the objective of practicing our Python skills and gain first-hand experience, we decided to “manually” set all these cases to <em>NaN</em> rather than invoke some ready-made function. We used method <em>replace</em> from module <em>pandas</em> to achieve this.</p>
+<p>With our variables recoded, we were now in a position to conduct a basic analysis of the features in the dataset to determine their usability for the regression task of our target variable <em>hits</em>. Our first analysis sought to assess the number of <em>NaN</em> in each variable. Once this was achieved, we decided to keep all variables with a zero <em>NaN</em> count, which reduced the number of variables in the dataset to twenty two. Two other relevant variables with comparatively low <em>NaN</em> counts were salvaged by uniformly imputing values, meaning we assigned the same value throughout. The number of rooms and utilities were imputed their corresponding mode and mean, respectively. This strategy was chosen because whereas the number of rooms has to be an integer, the cost of utilities can take a real value. We decided to drop other variables with relatively high <em>NaN</em> counts, as some experimentation with other more sophisticated imputation strategies resulted in variables that seemed to contain information we deemed too artificial.</p>
+<p>Other irrelevant (high level geographical information) or redundant variables (such as property type, which is uniform throughout the dataset) and metadata (like information quantifying ad metrics) were also dropped, leaving us with fifteen features to work with in our models. The features contained in our model is summarized in table 1.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="figures/table1.png" width="100%" /></p>
+</div>
+<h2 id="proposed-method">Proposed Method</h2>
+<h3 id="preprocessing">Preprocessing</h3>
+<p>In preparation to fitting our models, we conducted two kinds of preprocessing: one-hot encoding and scaling.</p>
+<p>We one-hot-encoded variable adat, which contains information about the time of the year when the ad was published, the only categorical variable in the dataset. The format of the values this variable takes follows a pattern that would allow us to parse it and obtain each posting’s month and year of publication. The component corresponding to the posting’s month of publication could possibly contain information regarding the seasonality of the posting. However, after exploring some options to encode these cyclical feature, we decided to one-hot encode it to focus our energy in the models. This, in addition to keeping the predictive value of the year component of this variable, is a potential improvement for future iterations of the project.</p>
+<p>The next step was perhaps one of the most impactful of our project and one from which we draw one of the most important conclusions. Our previous experiments with a multi-layer perceptron regressor yielded not only prohibitive training times but also dangerous processor temperatures (see figure 3). As is shown in the figure, the processors cooling mechanism (fan) was activated. This is far from being only anecdotal. According to Intel, the manufacturer of the CPU used to run our models, the temperature monitored is very similar to the measurement corresponding to the junction temperature of the processor, which has a chip-specific maximum operating value. At this temperature, the physical integrity of the unit is at risk, hence triggering a protection mechanism that will attempt to forcibly cool down the processor, in this case the computer’s fan.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:fig1"></span>
+<img src="figures/temp.png" alt="Fan temperature" width="100%" />
+<p class="caption">
+Figure 1: Fan temperature
+</p>
+</div>
+</div>
+<p>As a mitigation measure, we deployed our pipeline on the Hertie’s server, which allowed us to prevent our non-specialized hardware from being overworked. However, we were surprised by similar performance metrics.</p>
+<p>In order to overcome this we looked into possible causes and realized we had overlooked a very important and standard preprocesssing step that is very standard and discussed in papers like LeCun et al. <span class="citation" data-cites="LeCun2012">(<a href="#ref-LeCun2012" role="doc-biblioref">LeCun et al. 2012</a>)</span>: feature scaling. Since we don’t know the distribution of the features and the dataset we use has been preprocessed to remove outliers, the scaling strategy we chose was min-max. We left the one-hot encoded variables unscaled, to prevent any undesired effects. While the hot-encoded is easy to implement manually, this time we decided to implement these preprocessing measures using functions OneHotEncoder and MinMaxScaler from module scikitlearn.</p>
+<p>Finally, we proceeded to prepare the predictor vector <em>X</em> and the labels vector <em>y</em> and then split them into train and test subsets using a test size of 0.2. This was also achieved using <em>scikitlearn</em>. With these tasks completed, we were now ready to explore the vast selection of models offered by this library to solve regression tasks. The script we used to preprocess our data <em>preprocess.py</em> is also available in our repository.</p>
+<h1 id="proposed-method-1">Proposed method</h1>
+<h2 id="conventional-regressors-linear-and-poisson-regression">Conventional regressors: Linear and Poisson regression</h2>
+<p>Predicting the number of hits an advertisement gets is a regression task, for which a large number of models exist. A good baseline for this task is an ordinary least squares linear regression, which is has a closed-form solution and is the workhorse of the regression paradigm. Another interesting finding from our exploratory data analysis was the confirmation that the target variable <em>hits</em> was a count variable, and as such, one that lent itself to a Poisson regressor. This model is, in short, a generalized linear model with a Poisson distribution that uses the ‘log’ link function and is a natural strategy to regress a variable that takes only integer values. The distribution of our <em>hits</em> variable is shown in figure 2 as a frequency histogram.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:fig2"></span>
+<img src="figures/figure2.png" alt="Histogram of hits variable" width="100%" />
+<p class="caption">
+Figure 2: Histogram of hits variable
+</p>
+</div>
+</div>
+<h2 id="tree-models">Tree models</h2>
+<p>In order to explore the possibilities offered by a different algorithmic paradigm, we next chose to use a regression tree. This model belongs to the family known as decision trees. According to <span class="citation" data-cites="scikit-learn">(<a href="#ref-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span>, these are a non-parametric supervised learning algorithms used for classification and regression with the goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.</p>
+<p>To further our exploration of this paradigm, we also trained a random forest regressor, which in simple terms is an ensemble of regression trees.</p>
+<h2 id="using-support-vectors">Using support vectors</h2>
+<p>We decided to also build a support vector machine model, which can be said to elong to a different algorithmic family. For this purpose, we have used scikit-learn’s sklearn.svm.LinearSVR <span class="citation" data-cites="scikit-learn">(<a href="#ref-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span>. Support Vector Machine is a popular model since it can be applied to both classification as well as regression tasks. As we have outlined in the section on related work, previous literature on the success of advertisements frequently built models for classification tasks. Since our output variable is a count, we needed to deviate from a similar framework and use models that allow regression tasks. For this purpose, SVM are well-suited <span class="citation" data-cites="geron">(<a href="#ref-geron" role="doc-biblioref">Géron 2017</a>)</span>.</p>
+<p>In SVM classification, the algorithm aims on efficiently separating classes by fitting the decision boundary in such a way that the support vectors are as far away from the decision boundary as possible. In contrast, when SVM is used for a regression task as in our application, the algorithm aims on fitting as many observations (here: advertisements) within the area between the support vectors and the decision boundary. In other words, the algorithm now tries to choose the margin lines to cover as many data points as possible. For that purpose, users can choose the hyperparameter <span class="math inline">\(\epsilon\)</span> to control the width of the margin, effectively determining how much margin violation is allowed <span class="citation" data-cites="geron">(<a href="#ref-geron" role="doc-biblioref">Géron 2017</a>)</span>. Allowing higher margin violation can be reasonable in case there are large outliers within the sample.</p>
+<h2 id="exploring-neural-networks">Exploring neural networks</h2>
+<p>The only model that included more important hype-parameter tuning was the multi-layer perceptron. For this task we decided to go for a the simplest architecture possible: a single hidden layer with a single hidden unit. We consider this strategy to be a good introduction to the world of neural networks. Comparing its performance will allow us to gain a first idea of its strengths and weaknesses.</p>
+<h2 id="an-ensamble-strategy">An ensamble strategy</h2>
+<p>In order to explore the possibilities offered by strategies that ensemble models belonging to different families, we decided to include a voting regressor. This model -according to the documentation of its implementation in <em>scikitlearn</em>- seeks to combine conceptually different machine learning regressors and return the average predicted values. It goes to add that such a regressor can be useful for a set of equally well performing models in order to balance out their individual weaknesses. It is for these reasons that we chose to ensemble our baseline model with the forest, support and perceptron models.</p>
+<p>The script for our model-fitting process <em>models.py </em>is also available in our repository. Note that all models have been run with default options. This includes default maximum iterations, which can cause non convergence but still produces a valid result for our purposes.</p>
+<h2 id="experiments">Experiments</h2>
+<p><strong>Software</strong>: Briefly list (and cite) software you used.</p>
+<p><strong>Hardware</strong>: If relevant, list hardware resources you used.</p>
+<p><strong>Evaluation method</strong>: In order to assess the performance of the models we experimented with, we chose the root mean squared error (RMSE) as a metric. The metric is widely used to evaluate regression models and can be interpreted as a comparison between the predicted and actual test label that has the its same units. While the specific implementation may vary from library to library, the metric is generally computed using the following expression <span class="citation" data-cites="raschka">(<a href="#ref-raschka" role="doc-biblioref">Raschka and Mirjalili 2017</a>)</span>: <span class="math display">\[\operatorname{RMSE}=\sqrt{\frac{\sum_{t=1}^{T}\left(\hat{y}_{t}-y_{t}\right)^{2}}{n}}\]</span> We chose this metric because of its suitability for regression t asks, its superior interpretability in comparison to the mean squared error and the fact that the RWI-GEO-RED dataset has undergone an outlier removal process, which we consider important given the metric’s sensitivity to them.</p>
+<p>Moreover, we also wanted to assess the computational performance of our models. We decided to clock the runtimes of their training processes. To implement this we used function <em>process_time</em> of the <em>time</em> module. While we were aware that this kind of measure is hardware-specific, we also noticed that the same task could have different runtimes. In order to confirm this, we clocked the runtimes of a sample of 100 runs of our baseline model. Our results are summarized in figure 3, which shows the distribution of model runtimes for the fitting process of our baseline model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:fig3"></span>
+<img src="figures/figure3.png" alt="Histogram of hits variable" width="100%" />
+<p class="caption">
+Figure 3: Histogram of hits variable
+</p>
+</div>
+</div>
+<p>As the plot shows, the runtimes exhibit an approximately Gaussian shape. We obtained a mean of 1.3078 seconds and a standard deviation of 0.0518 seconds. This shows that our implementation is not very stable and our measurements should be taken as illustrative of the typical runtimes the models can take rather than an absolute point-estimate. These caveat notwithstanding, the measurements we obtained are still indicative of -at least- the order of magnitude of our the computing time required to run the processes.</p>
+<p>The script we used to sample the runtime distribution for the linear regressor (<em>timing.py</em>) is also available in our repository.</p>
+<p><strong>Experimental details</strong>: How you ran your experiments (e.g. model configurations, learning rate, training time, etc.)</p>
+<p><strong>Results</strong>: We used the aforementioned metrics to gauge the performance of our model selection. Before going into a discussion of the results of this new iteration of our project, we would like to point at the results we obtained in the previous one. Table 2 shows our previous model metrics. While the RMSE values have changed significantly due to variable scaling, notice the abysmal difference in the runtimes achieved by the perceptron model. Feature scaling has reduced the training time from a prohibitive 6,000 seconds to a mere 36.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="figures/table2.png" width="100%" /></p>
+</div>
+<p><strong>Comment on quantitative results</strong>: Having discussed this inter-iteration results, let’s now discuss our new results. Table 3 summarizes our new model metrics. The baseline model achieved an RMSE that is only surpassed by -leaving out the ensemble of three models out, as it is an “unfair” comparison- the random forest regressor. While the latter’s performance is 11% better, it comes at a huge runtime “overprice” of almost %40,000. From the runtime perspective, the Poisson model achieves a slightly worse result than our baseline but does so in less than half the runtime. This must be related to the fact that this regressor deals with integer values specifically, a fact that must reduce the size of the memory buffers it needs to be fit, if we must venture an hypothesis. In this sense, this algorithm is particularly naturally oriented to the task we are trying to solve.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="figures/table3.png" width="100%" /></p>
+</div>
+<p>Our neural network algorithm, the simplest multi-layer perceptron possible -only one hidden layer and one hidden unit- performs just our baseline model but takes nearly thirty times longer to fit. The support vector regressor achieves an unimpressive result, specially in light of it lengthy fitting runtime.</p>
+<p>The ensemble regressor, which -as discussed- averages the predictions of the algorithms involved, achieved the second best performance, beating the baseline by 6%. This interesting but not so cost-effective result -it needed more than 15 minutes to be trained- might be related to the fact that the strategies it combined -linear, forest, support and perceptron- penalize the best-achieving random forest regression.</p>
+<p>In order to visualize the space configured by the two metrics we have studied, we created figure 3. The figure shows a scatter plot that combines the RMSE of each model in the X-axis with each algorithm’s runtime, measured in seconds.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:fig4"></span>
+<img src="figures/figure4.png" alt="Errors and runtimes for implemented models" width="100%" />
+<p class="caption">
+Figure 4: Errors and runtimes for implemented models
+</p>
+</div>
+</div>
+<p>As we can see, no algorithm clearly provides the best of two worlds. On the contrary, we see that -for example- the random tree has -as expected because of its computational simplicity- one of the lowest runtimes but the worst RMSE. Conversely, we clearly confirm that the ensemble offers one of the best performing options but at a steep runtime cost. In figure 3, the best of two worlds seems to be offered by -ironically- the linear model, which offers the second best runtime and a performance that s only beat at great computational cost.</p>
+<p>With these results in mind, we now proceed to discuss the conclusions we have drawn.</p>
+<h2 id="analysis">Analysis</h2>
+<p>Your report should include some qualitative evaluation. That is, try to understand your system (how it works, when it succeeds and when it fails) by measuring or inspecting key characteristics or outputs of your model.</p>
+<ul>
+<li><p>Types of qualitative evaluation include: commenting on selected examples, error analysis, measuring the performance metric for certain subsets of the data, ablation studies, comparing the behaviors of two systems beyond just the performance metric, and visualizing attention distributions or other activation heatmaps.</p></li>
+<li><p>The Practical Tips lecture notes has a detailed section on qualitative evaluation – you may find it useful to reread it.</p></li>
+</ul>
+<h2 id="conclusions">Conclusion(s)</h2>
+<p>With the implementation of this new iteration of our project, we consider our objectives to have been met. We have gained significant hands-on experience with a small but enlightening set of regression models and the tasks involved in obtaining, curating and preprocessing the the data involved.</p>
+<p>As was mentioned in our previous report, obtaining dependable, high-quality data turned out to be a large portion of the workload of the project. Starting with the administrative tasks and the time used to prepare a plan B dataset, it is clear that curating a dataset for model-fitting is in fact one of the most time-consuming tasks of the data science pipeline.</p>
+<p>One of the most important conclusions we can draw is that the importance of feature-scaling strategies can hardly be overstated for some models. The performance of our perceptron algorithm -both in terms of RMSE (compare its deviation in between tables 2 and 3) and runtime- improved drastically. The difference a few lines of code makes to this model’s performance should be noted and taken advantage of in future projects.</p>
+<p>Including the runtime metric proved to be a success, as it opened the door to a new set of questions and model characteristics to be considered. From the theoretical point of view it brings questions like the one about better runtime metrics to the table. Other non-technical aspects of machine learning implementation also arise: model selection has an impact in resource consumption, which in turn impacts the environment and it stakeholders. Why our project may be considered a “toy” example for this purposes, the important conclusion is that in this -the ethical aspects of computation, let alone those of training set contents- could start playing a role.</p>
+<p>Another important conclusion is the realization that a simple linear regression can still perform very well and at a low cost for tasks like the one we tackled in this project. It is clear from figure 2 that there are performance trade-offs in each family of models. This underscores the importance of understanding the area-specific requirements of the problems, because in some circumstances a small improvement in the error metric could warrant the runtime costs it entails. The converse may also be true, and it goes to show that it is also very important to become acquainted with the algorithm “menu” at hand to be able to pick the one that is best suited for our problem.</p>
+<p>In hindsight, we should have not included the baseline model in the ensemble. We did so to include the second best performing model’s strengths in the group, but we reckon in is not ideal to compare a compare a model that includes the baseline to the baseline itself.</p>
+<p>These conclusions still leave a lot of open questions and hint us towards some interesting potential next steps.</p>
+<h1 id="next-steps">Next steps</h1>
+<p>While the progress made so far sets us in the right direction, more work is necessary to achieve our objectives. In order to do so, we believe the following steps could be implemented.</p>
+<h3 id="scaling">Scaling</h3>
+<p>We should study the different scaling strategies and their implications for model performance further. An immediate experiment would be to implement a basic standardization and compare the results to the ones summarized in table 3.</p>
+<h3 id="runtime-metrics">Runtime metrics</h3>
+<p>We should study the different scaling strategies and their implications for model performance further. An immediate experiment would be to implement a basic standardization and compare the results to the ones summarized in table 3.</p>
+<h3 id="hyper-parameters">Hyper-parameters:</h3>
+<p>We ran every model with its defaults, including the perceptron. While experimenting with it, it became evident that developing a sense of what parameters work better -and doing so exhaustively- is a very important task ahead in our understanding of neural network methods. An immediate step would be to implement a series of perceptron models that -at least- use different hidden layer and hidden unit numbers and compare their results to assess their effects.</p>
+<h3 id="imputation">Imputation</h3>
+<p>Our imputation strategies were very basic. We still need to look into implementing something more sophisticated and tailored to a specific case (row) like the <em>SimpleImputer</em> function included in <em>sklearn</em>, as referenced in Geron (2017) <span class="citation" data-cites="geron">(<a href="#ref-geron" role="doc-biblioref">Géron 2017</a>)</span>.</p>
+<h3 id="salvaging">Salvaging</h3>
+<p>Having experimented with more sophisticated imputation techniques, we could attempt to salvage more predictors -those with a low missing data count- by imputing their values with more sensible techniques.</p>
+<h3 id="scaling-1">Scaling</h3>
+<p>Our models could potentially benefit from standardization or normalization of the predictors. This is particularly relevant if we plan to keep on using RMSE as a metric, which is sensitive to scale.</p>
+<h3 id="parallelizatio">Parallelizatio:</h3>
+<p>While we were aable to test Hertie’s computing server, we did not create a GPU pipeline. It would be very interesting to start experimenting with truly parallel implementations not only because of the performance improvements they may bring but because of the technical challenges that parallelization entails in terms of coding and resource allocation.</p>
+<h3 id="interpretation">Interpretation:</h3>
+<p>One crucial aspect that still needs to be addressed is the interpretation of the model performances. While we already have notions as to why they differ in performance and runtime, we should be able to explicitly state the reasons behind this in order to develop intuitions we can use as we grow into more sophisticated problems and solutions. Some experimentation would also be useful.</p>
+<h3 id="metrics">Metrics:</h3>
+<p>As stated above, we could also explore different performance metrics. This would entail doing some more research as to -theoretically- which metrics are better suited to our models and the distribution of our predicted variable.</p>
+<h3 id="architecture">Architecture:</h3>
+<p>While the only “tuneable” model we used was the MLP, its hyper-parameters already presented some interesting questions. How many layers and neurons should we use? Which activation functions are better and why? While we understand this is in part arbitrary, there must be interesting guidelines to work with. It would be interesting to explore these and see what kinds of results we obtain. This might also include the combination of models, like the ones discussed in He et al. (2014) <span class="citation" data-cites="he2014practical">(<a href="#ref-he2014practical" role="doc-biblioref">He et al. 2014</a>)</span>, which could bring improved accuracy compared to using these methods individually.</p>
+<h3 id="dataset-splits">Dataset splits:</h3>
+<p>While we understand that the test size should be decided before hand and not tampere with, we believe that it is still important to experiment with it -using validations sets perhaps- to understand the benefits and problems different proportions could bring. A next step could be to experiment with the effect this has on model performance.</p>
+<h3 id="classification-tasks">Classification tasks:</h3>
+<p>In this project we have dealt with regression tasks exclusively. Classifications are a very important subset of problems in the machine learning world and we should experiment with them in -at least- the same scope and depth we did in this project in the near future.</p>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p>We want to sincerely thank the Forschungsdatenzentrum Ruhr (FDZ), located at the RWI Essen, for providing access to the campus data set. Specifically, we want to thank Mrs. Yvonne Meyer who gave helpful advice on the data structure, provided all relevant documents and files and was the main contact person for us at the FDZ.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-breidenbach2020real" class="csl-entry" role="doc-biblioentry">
+Breidenbach, Philipp, and Sandra Schaffner. 2020. <span>“Real Estate Data for Germany (RWI-GEO-RED).”</span> <em>German Economic Review</em> 21 (3): 401–16.
+</div>
+<div id="ref-geron" class="csl-entry" role="doc-biblioentry">
+Géron, Aurélien. 2017. <em>Hands-on Machine Learning with Scikit-Learn and TensorFlow : Concepts, Tools, and Techniques to Build Intelligent Systems</em>. Sebastopol, CA: O’Reilly Media.
+</div>
+<div id="ref-he2014practical" class="csl-entry" role="doc-biblioentry">
+He, Xinran, Junfeng Pan, Ou Jin, Tianbing Xu, Bo Liu, Tao Xu, Yanxin Shi, et al. 2014. <span>“Practical Lessons from Predicting Clicks on Ads at Facebook.”</span> In <em>Proceedings of the Eighth International Workshop on Data Mining for Online Advertising</em>, 1–9.
+</div>
+<div id="ref-LeCun2012" class="csl-entry" role="doc-biblioentry">
+LeCun, Yann A., Léon Bottou, Genevieve B. Orr, and Klaus-Robert Müller. 2012. <span>“Efficient BackProp.”</span> In <em>Neural Networks: Tricks of the Trade: Second Edition</em>, edited by Grégoire Montavon, Geneviève B. Orr, and Klaus-Robert Müller, 9–48. Berlin, Heidelberg: Springer Berlin Heidelberg. <a href="https://doi.org/10.1007/978-3-642-35289-8_3">https://doi.org/10.1007/978-3-642-35289-8_3</a>.
+</div>
+<div id="ref-scikit-learn" class="csl-entry" role="doc-biblioentry">
+Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, et al. 2011. <span>“Scikit-Learn: Machine Learning in <span>P</span>ython.”</span> <em>Journal of Machine Learning Research</em> 12: 2825–30.
+</div>
+<div id="ref-raschka" class="csl-entry" role="doc-biblioentry">
+Raschka, Sebastian, and Vahid Mirjalili. 2017. <em>Python Machine Learning: Machine Learning and Deep Learning with Python, Scikit-Learn, and TensorFlow, 2nd Edition</em>. 2nd ed. Packt Publishing.
+</div>
+<div id="ref-richardson2007predicting" class="csl-entry" role="doc-biblioentry">
+Richardson, Matthew, Ewa Dominowska, and Robert Ragno. 2007. <span>“Predicting Clicks: Estimating the Click-Through Rate for New Ads.”</span> In <em>Proceedings of the 16th International Conference on World Wide Web</em>, 521–30.
+</div>
+</div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+<h3 id="updates-and-corrections">Corrections</h3>
+<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/carlo-gress/immo/issues/new">create an issue</a> on the source repository.</p>
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/carlo-gress/immo">https://github.com/carlo-gress/immo</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
